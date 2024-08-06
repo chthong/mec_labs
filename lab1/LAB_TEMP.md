@@ -3,7 +3,9 @@
 # Step 
 
 * Prepare System for Docker
-* Login to local Ubuntu System ( Verify Connectivity and IP and Internet access )
+* Login to local Ubuntu VM  ( Verify Connectivity and IP and Internet access )
+* Default username: steve 
+* Default password: -nil-
 
 ```sh 
 sudo hostnamectl hostname edgeXX
@@ -34,11 +36,13 @@ newgrp docker
 docker run hello-world
 
 docker ps  -a
+
+docker rm -f <CONTAINER ID of hello-world> 
 ```
 
 # Step 
 * install cri-dockerd 
-* This is needed as Docker SHIM have been removed from upstream Kubernetes
+* This is needed for Edge Lab as Docker SHIM have been removed from upstream Kubernetes
 
 
 ```sh
@@ -57,11 +61,14 @@ rm -rf cri-dockerd_0.3.14.3-0.ubuntu-jammy_amd64.deb
 * Install CNI for Kubernetes Support 
 
 ```sh
+cd mec_labs/lab1/
 
+. install-cni.sh
 
 ```
 
 # Step
+* Deploy simple docker containers 
 
 ```sh
 
