@@ -1,5 +1,5 @@
 ## MEC Labs 
-MEC Training Assets
+### MEC Training Assets
 
 - This Hub contains the Labs files needed for MEC Training
 - Detail lab steps are in labs$i sub folders
