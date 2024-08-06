@@ -1,2 +1,7 @@
-FROM nginx:alpine
-RUN echo 'Server 1 content' > /usr/share/nginx/html/index.html
+FROM node:lts-slim
+
+ADD app.js /app.js
+
+EXPOSE 80
+
+ENTRYPOINT ["node", "app.js"]

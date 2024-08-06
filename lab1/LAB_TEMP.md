@@ -68,17 +68,42 @@ cd mec_labs/lab1/
 ```
 
 # Step
-* Deploy simple docker containers 
+* Build and Deploy simple web server docker containers 
 
 ```sh
+cd $HOME/mec_labs/lab1/docker-web/
+
+docker build -t webserver1 .
+docker build -t webserver2 .
+docker build -t webserver3 .
+
+docker images 
+
+docker network create mynetwork
+
+docker run -d --name web1 --network mynetwork --hostname web1 webserver1
+docker run -d --name web2 --network mynetwork --hostname web2 webserver2
+docker run -d --name web3 --network mynetwork --hostname web3 webserver3
 
 
 ```
 
 # Step
-
+* Build and Deploy Load Balancer ( CNF - Containerized Network Function )
 
 ```sh
+cd $HOME/mec_labs/lab1/docker-lb/
+
+docker build -t my-load-balancer .
+
+docker images 
+
+docker run -d --name my-haproxy -p 80:80 --network mynetwork my-load-balancer
+
+docker ps 
+
+docker logs my-haproxy
+
 
 ```
 
