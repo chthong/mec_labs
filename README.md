@@ -6,14 +6,14 @@ MEC Training Assets
 
 - Access to Kubernetes Cluster/Linux will be provided by Steven during Training Session
 
-# Lab1 - Docker [ Application & VNF  ]
-# Lab2 - API Management [ online ]
-# Lab3 - Kubernetes [ Cloud Access ]
-# Lab4 - Kubernetes + Kubeedge [ Edge ]
-# Lab5 - Simulated Delivery of Application [ Edge ]
-# Lab6 - WiP 
-# Lab7 - WiP 
-# Lab8 - WiP 
+### Lab1 - Docker [ Application & VNF  ]
+### Lab2 - API Management [ online ]
+### Lab3 - Kubernetes [ Cloud Access ]
+### Lab4 - Kubernetes + Kubeedge [ Edge ]
+### Lab5 - Simulated Delivery of Application [ Edge ]
+### Lab6 - WiP 
+### Lab7 - WiP 
+### Lab8 - WiP 
 
 Thank You, Have Fun, Cheers<br>
 Steven<br>
