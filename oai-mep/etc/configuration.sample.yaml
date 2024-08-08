@@ -1,0 +1,13 @@
+application:
+  port: 8080
+  host: '172.29.248.1'
+  loglevel: info  #debug/info/error
+  fqdn: 'oai-mep.org'  #Fully qualified domain name needed for kong service for loadbalancing between services this value should be same as kong and present in your /etc/hosts
+  kong: 'oai-mep.org:8001'
+database:
+  host: localhost 
+  port: 27017
+  name: oaimep
+  user: 'admin'
+  password: 'linux'
+  reset: 'yes'    #to reset the database when starting mep good for testing

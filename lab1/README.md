@@ -85,7 +85,6 @@ docker run -d --name web1 --network mynetwork --hostname web1 webserver1
 docker run -d --name web2 --network mynetwork --hostname web2 webserver2
 docker run -d --name web3 --network mynetwork --hostname web3 webserver3
 
-
 ```
 
 # Step
@@ -104,6 +103,68 @@ docker ps
 
 docker logs my-haproxy
 
+curl localhost
+```
+
+# Step
+
+* Run VPN Server CNF ( Containerized Network Function )
+
+```sh
+docker pull openvpn/openvpn-as
+
+docker images
+
+mkdir $HOME/vpn
+
+docker run -d --name=openvpn-as --cap-add=NET_ADMIN -p 943:943 -p 443:443 -p 1194:1194/udp -v $HOME/vpn/:/openvpn openvpn/openvpn-as
+
+docker logs openvpn-as | grep 'Auto-generated pass'
+
+```
+>> Login to <DOCKER-HOST-IP:/>
+>> using the generated password, you can login to the CNF OpenVpn 
+>> username : openvpn 
+
+
+# Step
+* Clean up the containers
+
+```sh
+docker ps -a 
+docker rm -f <Container ID> 
+
+docker network ls 
+docker network rm <UNWANTED_NETWORK>
+
+```
+## END of Lab1A
+
+
+# LAB1B
+# Step
+* Install docker-compose 
+
+```sh
+sudo curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+
+sudo chmod +x /usr/local/bin/docker-compose
+
+docker-compose version
+```
+
+# Step
+* You will now install Open Baton 
+* Project link:  
+* Open Baton is an open source project providing a comprehensive implementation of the ETSI Management and Orchestration (MANO) specification and the TOSCA Standard.
+
+* Open Baton provides multiple mechanisms for interoperating with different VNFM vendor solutions. It has a modular architecture which can be easily extended for supporting additional use cases.
+
+* It integrates with OpenStack as standard de-facto VIM implementation, and provides a driver mechanism for supporting additional VIM types. It supports Network Service management either using the provided Generic VNFM and Juju VNFM, or integrating additional specific VNFMs. It provides several mechanisms (REST or PUB/SUB) for interoperating with external VNFMs.
+
+* It can be combined with additional components (Monitoring, Fault Management, Autoscaling, and Network Slicing Engine) for building a unique MANO comprehensive solution.
+
+```sh
 
 ```
 
@@ -116,11 +177,24 @@ docker logs my-haproxy
 # Step
 
 
+
 ```sh
 
 ```
 
+# Step
 
+```sh
+
+```
+
+# Step
+
+
+
+```sh
+
+```
 
 # Step
 

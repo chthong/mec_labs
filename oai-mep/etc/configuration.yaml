@@ -1,0 +1,13 @@
+application:
+  port: "{{ env["PORT"] if "PORT" in env.keys() else '8080' }}"
+  host: "{{ env["HOST"] if "HOST" in env.keys() else '0.0.0.0' }}"
+  loglevel: "{{ env["LOG_LEVEL"] if "LOG_LEVEL" in env.keys() else 'info' }}"  #debug/info/error
+  fqdn: "{{ env["FQDN"] if "FQDN" in env.keys() else 'oai-mep.testing.org' }}" #Fully qualified domain name needed for kong service for loadbalancing between services
+  kong: "{{ env["BACKEND"] if "BACKEND" in env.keys() else 'oai-mep.org:8001' }}"
+database:
+  host: "{{ env["DATABASE_HOST"] if "DATABASE_HOST" in env.keys() else '172.29.248.2' }}" 
+  port: "{{ env["DATABASE_PORT"] if "DATABASE_PORT" in env.keys() else '27017' }}"
+  name: oaimep
+  user: "{{ env["DATABASE_USER"] if "DATABASE_USER" in env.keys() else 'admin' }}"
+  password: "{{ env["DATABASE_PASSWORD"] if "DATABASE_PASSWORD" in env.keys() else 'linux' }}"
+  reset: "{{ env["RESET_DATABASE"] if "RESET_DATABASE" in env.keys() else 'yes' }}"    #to reset the database when start good for testing
