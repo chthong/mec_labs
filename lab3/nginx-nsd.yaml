@@ -1,0 +1,19 @@
+nsd:nsd-catalog:
+  nsd:
+    - id: nginx-ns
+      name: nginx-ns
+      short-name: nginx-ns
+      description: Network Service with a single Nginx VNF
+      version: '1.0'
+      constituent-vnfd:
+        - member-vnf-index: 1
+          vnfd-id-ref: nginx-vnf
+      vld:
+        - id: internal
+          name: internal
+          type: ELAN
+          mgmt-network: true
+          vnfd-connection-point-ref:
+            - vnfd-id-ref: nginx-vnf
+              member-vnf-index-ref: 1
+              vnfd-connection-point-ref: eth0

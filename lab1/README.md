@@ -155,7 +155,7 @@ docker-compose version
 
 # Step
 * You will now install Open Baton 
-* Project link:  
+ 
 * Open Baton is an open source platform providing a comprehensive implementation of the ETSI NFV Management and Orchestration (MANO) specification.
 
 * Open Baton provides multiple mechanisms for interoperating with different VNFM vendor solutions. It has a modular architecture which can be easily extended for supporting additional use cases.
@@ -346,5 +346,19 @@ docker build -t iperfserver .
 
 >> Beyond this, help yourself to explore the VNFO 
 
+
+# Step 
+
+* CleanUp 
+* Remove all unwanted containers , stop and and rm -f them, example: 
+```sh 
+
+docker-compose down -v 
+
+docker ps 
+
+docker rm -f <container_ID> 
+
+```
 
 END

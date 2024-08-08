@@ -1,0 +1,25 @@
+vnfd:vnfd-catalog:
+  vnfd:
+    - id: nginx-vnf
+      name: nginx-vnf
+      short-name: nginx-vnf
+      description: A simple Nginx VNF
+      version: '1.0'
+      vdu:
+        - id: nginx-vdu
+          name: nginx-vdu
+          description: VDU for Nginx VNF
+          vm-flavor:
+            vcpu-count: 1
+            memory-mb: 512
+            storage-gb: 1
+          image: nginx:latest
+          interface:
+            - name: eth0
+              type: EXTERNAL
+              virtual-interface:
+                type: VIRTIO
+              external-connection-point-ref: eth0
+      connection-point:
+        - id: eth0
+          name: eth0
