@@ -156,7 +156,7 @@ docker-compose version
 # Step
 * You will now install Open Baton 
 * Project link:  
-* Open Baton is an open source project providing a comprehensive implementation of the ETSI Management and Orchestration (MANO) specification and the TOSCA Standard.
+* Open Baton is an open source platform providing a comprehensive implementation of the ETSI NFV Management and Orchestration (MANO) specification.
 
 * Open Baton provides multiple mechanisms for interoperating with different VNFM vendor solutions. It has a modular architecture which can be easily extended for supporting additional use cases.
 
@@ -164,50 +164,187 @@ docker-compose version
 
 * It can be combined with additional components (Monitoring, Fault Management, Autoscaling, and Network Slicing Engine) for building a unique MANO comprehensive solution.
 
-```sh
+* Project git: https://github.com/openbaton
+* Project Doc: https://openbaton-docs.readthedocs.io/en/latest/
 
+```sh
+ mkdir $HOME/obaton
+ cd $HOME/obaton 
+
+ curl -o docker-compose.yml https://raw.githubusercontent.com/openbaton/bootstrap/master/docker-compose.yml
 ```
 
 # Step
+* Examine the docker-compose.yaml file and change any Password variables to your own password
 
 ```sh
+more docker-compose.yaml
 
+vim docker-compose.yaml
 ```
 
 # Step
-
-
+* Verify the syntax of docker-compose.yaml 
 
 ```sh
-
+docker-compose config --quiet && printf "OK\n" || printf "ERROR\n"
 ```
 
 # Step
+* Bring up all the containers for NFVO 
 
 ```sh
 
+export HOST_IP=YOUR_LOCAL_IP 
+
+docker-compose up -d
+```
+>> YOUR_LOCAL_IP is the ip address of the VM ethernet interface
+>> Download and Up will take 5 ~ 7 Minute
+
+# Step
+* once images are downloaded and started run logs to verify everything is running
+```sh
+docker-compose ps
+
+docker-compose logs -f 
+```
+>> Control+C after reviewing the Logs, then rerun docker-compose ps
+
+# Step
+* After completing the installation, you should be able to reach the dashboard of the NFVO at the following url: http://your-ip-here:8080
+
+* When accessing the dashboard, you will be prompted for a username and password. The first access can only be done with the super user ("admin") created during the installation process (the default value is "openbaton")
+
+* register a new pop of type docker
+
+* Manage PopS > PoP Instances > Register a New PoP > File Input 
+
+```sh
+{
+  "name": "Local-VIM-Docker",
+  "authUrl": "unix:///var/run/docker.sock",
+  "tenant": "1.32",
+  "username": "admin",
+  "password": "openbaton",
+  "type": "docker",
+  "location": {
+    "name": "Berlin",
+    "latitude": "52.525876",
+    "longitude": "13.314400"
+  }
+}
+
+```
+# Step
+* You will go through the deployment of Iperf client and server in two different Docker containers.
+* This is a Simulated MANO Deployment 
+* in Real Life this is deployed to OpenStack VIM / Enterprise Docker/Containers that supports API based MANO 
+
+
+```sh
+cd $HOME/mec-labs/lab1/docker-iperfclient 
+
+docker build -t iperfclient .
+
+cd $HOME/mec-labs/lab1/docker-iperfserver
+
+docker build -t iperfserver .
 ```
 
 # Step
+* After this, you need to refresh the VIM on order to see the new images: go to Manage PoPs→PoP instances→ID and click on the two round arrows close to the name. This will trigger the Vim refresh.
 
 
+* Afterwards, you need to create a NSD. From the NFVO dashboard, go to Catalogue→NS Descriptors→On Board NSD→Upload JSON and paste this JSON content:
 
-```sh
+```sh 
+{
+  "name": "docker Iperf",
+  "vendor": "fokus",
+  "version": "0.1-ALPHA",
+  "vld": [{
+    "name": "new-network"
+  }],
+  "vnfd": [{
+    "name": "server",
+    "vendor": "TUB",
+    "version": "0.2",
+    "lifecycle_event": [
 
+    ],
+    "configurations": {
+      "configurationParameters": [],
+      "name": "server-configuration"
+    },
+    "virtual_link": [{
+      "name": "new-network"
+    }],
+    "vdu": [{
+      "vm_image": [
+        "iperfserver:latest"
+      ],
+      "scale_in_out": 2,
+      "vnfc": [{
+        "connection_point": [{
+          "virtual_link_reference": "new-network"
+        }]
+      }]
+    }],
+    "deployment_flavour": [{
+      "flavour_key": "m1.small"
+    }],
+    "type": "server",
+    "endpoint": "docker"
+  }, {
+    "name": "client",
+    "vendor": "TUB",
+    "version": "0.2",
+    "lifecycle_event": [
+
+    ],
+    "configurations": {
+      "configurationParameters": [],
+      "name": "server-configuration"
+    },
+    "virtual_link": [{
+      "name": "new-network"
+    }],
+    "vdu": [{
+      "vm_image": [
+        "iperfclient:latest"
+      ],
+      "scale_in_out": 2,
+      "vnfc": [{
+        "connection_point": [{
+          "virtual_link_reference": "new-network"
+        }]
+      }]
+    }],
+    "deployment_flavour": [{
+      "flavour_key": "m1.small"
+    }],
+    "type": "client",
+    "endpoint": "docker"
+  }],
+  "vnf_dependency": [{
+    "source": {
+      "name": "server"
+    },
+    "target": {
+      "name": "client"
+    },
+    "parameters": [
+      "hostname"
+    ]
+  }]
+}
 ```
-
 # Step
 
-```sh
+* Launch NSD 
 
-```
+>> Beyond this, help yourself to explore the VNFO 
 
-# Step
-
-
-
-```sh
-
-```
 
 END
