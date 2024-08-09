@@ -353,6 +353,8 @@ docker build -t iperfserver .
 * Remove all unwanted containers , stop and and rm -f them, example: 
 ```sh 
 
+docker-compose ps
+
 docker-compose down -v 
 
 docker ps 
@@ -360,5 +362,7 @@ docker ps
 docker rm -f <container_ID> 
 
 ```
+
+>> You may leave the VM powered on, if needed to shutdown, Steven will inform you. 
 
 END
