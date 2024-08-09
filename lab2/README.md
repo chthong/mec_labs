@@ -115,45 +115,33 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 # Step
 
-```sh
+* Explore GET /discover 
+
+* Explore GET /discover/{serviceType}
+
+* Explore POST /register
+
+* DELETE /register/{ServiceID}
 
 
-```
 
+## LAB2B 
 # Step
 
+* You will explore more API at https://try-mec.etsi.org/
 
-```sh
+* Before you login, you need a GitHub Account ( Register for free )
 
-```
+![alt text](image-2.png)
 
-# Step
+* Once you signed in, a Sandbox will run 
 
-```sh
+* Select a Network  e.g: 4g-5g-macro-v2x 
 
-```
+* Select MEC APIs 
+ - Radio Network Information [ ETSI 012 ]
+ - enable this 
+ - explore the Request using the Try-it in the browser 
 
-# Step
-
-
-```sh
-
-```
-
-
-
-# Step
-
-```sh
-
-```
-
-# Step
-
-
-
-```sh
-
-```
 
 END
