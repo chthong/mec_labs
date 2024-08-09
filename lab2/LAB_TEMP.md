@@ -27,17 +27,23 @@
 
 
 ```sh
+cd $HOME 
 
+git clone https://github.com/stv707/mec_labs.git
 
+cd $HOME/mec_labs/oai-mep/
 
-
-
+sudo docker-compose -f ci-scripts/docker-compose.yaml up -d
 ```
+>> the images already been downloaded.
+
 
 # Step 
-
+* Add ip/name  172.29.248.3 oai-mep.org  to /etc/host 
 
 ```sh
+sudo vim /etc/hosts 
+172.29.248.3 oai-mep.org 
 
 ```
 

@@ -1,0 +1,38 @@
+# Copyright © 2023 the OAI-RNIS Authors
+# 
+# Licensed under the Apache License, Version 2.0 (the
+# "License"); you may not use this file except in compliance
+# with the License.  You may obtain a copy of the License at
+#
+#   http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing,
+# software distributed under the License is distributed on an
+# "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
+# KIND, either express or implied.  See the License for the
+# specific language governing permissions and limitations
+# under the License. 
+# Contact: netsoft@eurecom.fr
+
+#---------------------------------------------------------------------
+# BUILDER IMAGE
+#---------------------------------------------------------------------
+
+FROM python:3.10.10-alpine3.17 as builder
+
+ENV TZ=Europe/Paris
+
+RUN mkdir -p /usr/tmp
+
+COPY . /usr/tmp/
+
+COPY etc/configuration.yaml \
+	 etc/rnis-descriptor.yaml \
+	/usr/local/etc/
+
+WORKDIR /usr/tmp/src/
+
+RUN pip3 install . --no-cache-dir && \
+	rm -rf /usr/tmp
+
+CMD ["oai_rnis"]

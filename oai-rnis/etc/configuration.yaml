@@ -1,0 +1,26 @@
+---
+application:
+  host: "{{ env["HOST"] if "HOST" in env.keys() else '0.0.0.0' }}"
+  port: "{{ env["PORT"] if "PORT" in env.keys() else '30201' }}"
+  loglevel: "{{ env["LOG_LEVEL"] if "LOG_LEVEL" in env.keys() else 'info' }}"
+  versionEndpoint: '/v2'
+  environment: "{{ env["ENVIRONMENT"] if "ENVIRONMENT" in env.keys() else 'user' }}"
+  mep:
+    register: "{{ env["REGISTER_TO_MEP"] if "REGISTER_TO_MEP" in env.keys() else 'yes' }}"
+    registrationUrl:  "{{ env["MEP_URL"] if "MEP_URL" in env.keys() else 'http://oai-mep.org/service_registry/v1/' }}"
+coreNetwork:
+  pollingTimer: 1    # in seconds
+  nodes:
+  - cnIp: "{{ env["CN_HANDLER_IP"] if "CN_HANDLER_IP" in env.keys() else '192.168.70.168' }}"
+    cnPort: "{{ env["CN_HANDLER_PORT"] if "CN_HANDLER_PORT" in env.keys() else '80' }}"
+    pollingTimer: 1    # in seconds
+    amfSubscriptionEndpoint: '/subscribe/notification/amf'
+    smfSubscriptionEndpoint: '/subscribe/notification/smf'
+    statsEndpoint: '/notifications'
+rabbitMQ:
+  nodes:
+  - brokerIp: "{{ env["RABBITMQ_IP"] if "RABBITMQ_IP" in env.keys() else '192.168.70.166' }}"
+    brokerPort: "{{ env["RABBITMQ_PORT"] if "RABBITMQ_PORT" in env.keys() else 5672 }}"
+    userName: "{{ env["RABBITMQ_USERNAME"] if "RABBITMQ_USERNAME" in env.keys() else user }}"    #same for GUI
+    userPassword: "{{ env["RABBITMQ_PASSWORD"] if "RABBITMQ_PASSWORD" in env.keys() else password }}"
+    queueName: rnis_xapp

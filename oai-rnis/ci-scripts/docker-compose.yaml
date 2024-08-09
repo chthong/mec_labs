@@ -1,0 +1,89 @@
+version: "3.8"
+services:
+  #######################################
+  # OAI-RNIS
+  #######################################
+  oai-rnis:
+    image: oaisoftwarealliance/oai-rnis:latest
+    container_name: 'oai-rnis'
+    environment:
+      CONFIG_FILE: '/usr/local/etc/configuration.yaml'
+      RNIS_DESCRIPTOR: '/usr/local/etc/rnis-descriptor.yaml'
+      MOUNT_CONFIG: 'no'
+      PORT: 80
+      LOG_LEVEL: info
+      REGISTER_TO_MEP: 'no'
+      MEP_URL: 'http://oai-mep.org/service_registry/v1/register'
+      HOST: 192.168.70.169
+      CN_HANDLER_IP: 192.168.70.168
+      CN_HANDLER_PORT: 80
+      RABBITMQ_IP: 192.168.70.166
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USERNAME: user
+      RABBITMQ_PASSWORD: password
+      QUEUE_NAME: 'rnis_xapp'
+    depends_on:
+      - mongodb
+      - oai-cm
+    healthcheck:
+      test: /bin/sh -c "pgrep oai_rnis"
+      interval: 5s
+      timeout: 2s
+      retries: 15
+    networks:
+       public_net:
+          ipv4_address: 192.168.70.169
+  #######################################
+  # OAI CM
+  #######################################
+  oai-cm:
+    image: oaisoftwarealliance/oai-cm:latest
+    container_name: "oai-cm"
+    restart: always
+    environment:
+      CONFIG_FILE: '/usr/local/etc/configuration.yaml'
+      MOUNT_CONFIG: 'no'
+      PORT: 80              #application port
+      LOG_LEVEL: info
+      HOST: 192.168.70.168  ## Really important it should be reachable from amf and smf
+      DATABASE_HOST: mongodb
+      AMF_HOST: 192.168.70.132
+      SMF_HOST: 192.168.70.133
+      DATABASE_PORT: 27017
+      DATABASE_USER: admin
+      DATABASE_PASSWORD: linux
+      RESET_DATABASE: 'yes'    #whenever mep is restarted database will be re-initialized
+    depends_on:
+      - mongodb
+    healthcheck:
+      test: /bin/sh -c "pgrep oai_cm"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+       public_net:
+          ipv4_address: 192.168.70.168
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: linux
+    command: mongod
+    healthcheck:
+      test: /bin/sh -c "pgrep mongod"
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    networks:
+       public_net:
+          ipv4_address: 192.168.70.167
+networks:
+    public_net:
+        driver: bridge
+        name: demo-oai-public-net
+        ipam:
+            config:
+                - subnet: 192.168.70.0/24
+        driver_opts:
+            com.docker.network.bridge.name: "demo-oai"

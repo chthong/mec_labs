@@ -1,0 +1,26 @@
+---
+application:
+  host: 192.168.70.1
+  port: 8080
+  loglevel: info
+  versionEndpoint: v2
+  environment: testing #only used when doing testing and registeration to mep is yes
+  mep:
+    register: 'no'    #register rnis to mep
+    registrationUrl: http://oai-mep.org/service_registry/v1/
+coreNetwork:
+  pollingTimer: 1    # in seconds
+  nodes:
+  - cnIp: 192.168.70.168
+    cnPort: 80
+    pollingTimer: 1   # in seconds
+    amfSubscriptionEndpoint: '/subscribe/notification/amf'
+    smfSubscriptionEndpoint: '/subscribe/notification/smf'
+    statsEndpoint: '/notifications'
+rabbitMQ:
+  nodes:
+  - brokerIp: 192.168.70.166
+    brokerPort: 5672
+    userName: user   #same for GUI
+    userPassword: password
+    queueName: rnis_xapp

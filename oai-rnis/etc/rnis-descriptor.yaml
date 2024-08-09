@@ -1,0 +1,33 @@
+name: rnis
+path: "/v2"
+type: RadioNetworkInformation
+description: The service allows other app or services to consume network and radio information
+docs: https://gitlab.eurecom.fr/oai/orchestration/oai-mec/oai-rnis
+endpoints:
+- name: rab_info
+  path: "/queries/rab_info"
+  method: GET
+- name: plmn_info
+  path: "/v2/queries/plmn_info"
+  method: GET
+- name: s1_bearer_info
+  path: "/v2/queries/s1_bearer_info"
+  method: GET
+- name: layer2_meas
+  path: "/queries/layer2_meas"
+  method: GET
+- name: get_subscriptions
+  path: "/subscription"
+  method: GET
+- name: post_subscriptions
+  path: "/subscription"
+  method: POST
+- name: get_subcription
+  path: "/subscriptions/{subscriptionId}"
+  method: GET
+- name: modify_subscription
+  path: "/subscriptions/{subscriptionId}"
+  method: PUT
+- name: delete_subscription
+  path: "/subscriptions/{subscriptionId}"
+  method: DELETE
