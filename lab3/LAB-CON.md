@@ -25,12 +25,9 @@ Access Kubernetes Steps.
 >> You can change password upon first login, if you change PLEASE Remember your password !!!
 
 2. How to connect?
-* Method 1 
-- Use windows 10/11 Powershell 
+* Use windows 10/11 Powershell 
 ```sh 
 ssh Username@ssh.cognitoz.my
 ```
 
-* Method 2 
-- Use Visual Studio Code 
-- Will be guided during session 
+>> WARNING : this is a shared system on cloud, do not HACK it nor attempt to do any heroic things, we are working on common ground!!! 
