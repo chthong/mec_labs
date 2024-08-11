@@ -7,7 +7,7 @@ Access Kubernetes Steps.
 1. Use the following info to get connected
 
 
-| Username | User Name                |
+| Username | Student Name                |
 |----------|--------------------------|
 | stu1     | Chong Siew Kwee          |
 | stu2     | Koay Wei Kheng           |
