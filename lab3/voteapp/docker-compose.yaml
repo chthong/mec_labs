@@ -1,0 +1,17 @@
+version: '3'
+services:
+  vote-backend:
+    image: redis
+    container_name: vote-backend
+    environment:
+      ALLOW_EMPTY_PASSWORD: "yes"
+    ports:
+        - "6379:6379"
+
+  vote-front:
+    image: stv707/voteapp:v1
+    container_name: vote-frontend
+    environment:
+      REDIS: vote-backend
+    ports:
+        - "8080:80"

@@ -1,132 +1,33 @@
-#  Explore Kubernetes Cluster 
+# Kubernetes Access
+
+Access Kubernetes Steps.
+
+## Labs Setup 
+
+1. Use the following info to get connected
 
 
-Explore and Verify Kubernetes ( DO )
-# Step 1 
+| Username | Student Name                |
+|----------|--------------------------|
+| stu1     | Chong Siew Kwee          |
+| stu2     | Koay Wei Kheng           |
+| stu3     | Larsen Bautista Barcelon |
+| stu4     | Lee Hao Yi               |
+| stu5     | Liew Chee Seng           |
+| stu6     | Pang Chee Wai            |
+| stu7     | Shahrin Md Zin           |
+| stu8     | Sharen Bin Hassim        |
+| stu9     | Wong Choon Hon           |
 
-1. Access hosted Linux System with your assigned username 
-2. Add your assigned kubeconfig.yaml to .kube/config 
 
+>> Password will given during session
 
-```sh
+>> You can change password upon first login, if you change PLEASE Remember your password !!!
 
-User@vmXXX#> cat .kube/config 
-
-User@vmXXX#> kubectl get nodes 
-
-User@vmXXX#> kubectl get nodes -o wide
-
-User@vmXXX#> kubectl describe node <node_name>
-
-```
-
-# Step 2 
-
-Open a SSH connection to worker node
- - replace node_name with your first worker node name 
-
-```sh
-User@vmXXX#> kubectl get nodes 
-
-User@vmXXX#> kubectl debug node/<node_name> -it --image=mcr.microsoft.com/aks/fundamental/base-ubuntu:v0.0.11
-
-root@inst1-aqhd0gso1-rsxhz:/# chroot /host
-
-# crictl ps
-
-# crictl images ls 
-
-# systemctl status kubelet
-
-# systemctl status containerd
-
-# crictl ps | grep kube-proxy
-
-# cat /etc/*rel*
-
-# uname -a
-
-# lscpu 
-
-# free -h 
-
-# exit
-
-root@inst1-aqhd0gso1-rsxhz:/#  exit
-
-User@vmXXX#> kubectl get pods --field-selector status.phase!=Running 
-NAME                                           READY   STATUS      RESTARTS   AGE
-node-debugger-XXX                              0/1     Completed   0          13m
-
-User@vmXXX#> kubectl  delete pod node-debugger-XXX
-
-```
-
-# Step 3 
-
-Explore all running Containers/Pods and Configurations
-```sh
-
-User@vmXXX#>  kubectl get ns 
-
-User@vmXXX#>  kubectl get po -n kube-system
-
-User@vmXXX#>  kubectl get service 
-
-User@vmXXX#>  kubectl get deployments
-
-User@vmXXX#>  kubectl get daemonsets
-
-User@vmXXX#>  kubectl get replicasets 
-
-User@vmXXX#>  kubectl get statefulsets 
-
-User@vmXXX#>  kubectl get configmap 
-
-User@vmXXX#>  kubectl get secret 
-
-User@vmXXX#>  kubectl get storageclass 
-
-User@vmXXX#>  kubectl get pv
-
-User@vmXXX#>  kubectl get pvc
-
-User@vmXXX#>  kubectl get cronjobs
-
-User@vmXXX#>  kubectl get jobs
-
-User@vmXXX#>  kubectl get endpoints
-
-```
-
-# Step 4 
-
-Deploy Simple App to Kubernetes
-```sh
-User@vmXXX#>  kubectl get deployments
-
-User@vmXXX#>  kubectl get service 
-
-User@vmXXX#>  kubectl apply -f voteapp.yaml 
-
-User@vmXXX#>  kubectl get service voteapp-frontend
-** Browse to the external IP address to verify app is running
-
-```
-
-# Step 5
-
-Remove previously deployed App and verify there is no Service, Pod and Deployment defined 
+2. How to connect?
+* Use windows 10/11 Powershell 
 ```sh 
-
-User@vmXXX#>  kubectl delete -f voteapp.yaml 
-
-User@vmXXX#>  kubectl get deployments
-
-User@vmXXX#>  kubectl get svc
-
-User@vmXXX#>  kubectl get po
-
+ssh Username@ssh.cognitoz.my
 ```
 
-#### END
+>> WARNING : this is a shared system on cloud, do not HACK it nor attempt to do any heroic things, we are working on common ground!!! 

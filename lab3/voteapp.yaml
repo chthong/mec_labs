@@ -1,0 +1,90 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voteapp-backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: voteapp-backend
+  template:
+    metadata:
+      labels:
+        app: voteapp-backend
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: voteapp-backend
+        image: redis
+        env:
+        - name: ALLOW_EMPTY_PASSWORD
+          value: "yes"
+        ports:
+        - containerPort: 6379
+          name: redis
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: voteapp-backend
+spec:
+  ports:
+  - port: 6379
+  selector:
+    app: voteapp-backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: voteapp-frontend
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: voteapp-frontend
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5 
+  template:
+    metadata:
+      labels:
+        app: voteapp-frontend
+    spec:
+      nodeSelector:
+        "kubernetes.io/os": linux
+      containers:
+      - name: voteapp-frontend
+        image: stv707/voteapp:v1
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            cpu: 250m
+          limits:
+            cpu: 500m
+        env:
+        - name: REDIS
+          value: voteapp-backend
+      tolerations:
+      - key: extra
+        operator: "Equal"
+        value: "amd"
+        effect: "NoSchedule"
+      - key: gpu
+        operator: "Equal"
+        value: "nvidia"
+        effect: "NoSchedule"
+---  
+apiVersion: v1
+kind: Service
+metadata:
+  name: voteapp-frontend
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+  selector:
+    app: voteapp-frontend
