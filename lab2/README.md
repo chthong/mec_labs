@@ -129,7 +129,7 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 
 
-## LAB2B - Explore try-mec
+## LAB2B - Try-MEC API
 # Step
 * MEC Sandbox is an interactive environment that enables users to learn & experiment with ETSI MEC Service APIs. These standardized RESTful APIs are targeted towards MEC application developers to expose the value added services offered by MEC, including real time access to network and context information, as well as location awareness. The design principles for developing the APIs have also been specified in ETSI GS MEC 009, along with http methods, templates, conventions and patterns. The MEC service APIs are available in YAML and JSON format at https://forge.etsi.org, presented via OpenAPI compliant descriptions.
 
@@ -158,6 +158,10 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
  - Radio Network Information [ ETSI 012 ]
  - enable this 
  - explore the Request using the Try-it in the browser 
+
+* You can access https://mecwiki.etsi.org/index.php?title=MEC_Sandbox_Help#UE_Types to get more information on how to use/try this platform
+
+
 
 
 END
