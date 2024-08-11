@@ -123,10 +123,26 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 * DELETE /register/{ServiceID}
 
+# END 
 
 
-## LAB2B 
+
+
+
+## LAB2B - Explore try-mec
 # Step
+* MEC Sandbox is an interactive environment that enables users to learn & experiment with ETSI MEC Service APIs. These standardized RESTful APIs are targeted towards MEC application developers to expose the value added services offered by MEC, including real time access to network and context information, as well as location awareness. The design principles for developing the APIs have also been specified in ETSI GS MEC 009, along with http methods, templates, conventions and patterns. The MEC service APIs are available in YAML and JSON format at https://forge.etsi.org, presented via OpenAPI compliant descriptions.
+
+* MEC Sandbox provides the user with a choice of scenarios combining different network technologies (4G, 5G, Wi-Fi) and terminal types. Combining these assets in a geolocated environment, a user can gain hands-on experience on the behavior and capabilities of the Location (MEC013), Radio Network Information (MEC012), WLAN Information (MEC028), Edge Platform Application Enablement (MEC011) and Application Mobility (MEC021) service APIs. Such contextual information can offer significant differential performance for edge based MEC applications.
+
+
+
+
+
+
+
+
+
 
 * You will explore more API at https://try-mec.etsi.org/
 
@@ -134,7 +150,7 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 ![alt text](image-2.png)
 
-* Once you signed in, a Sandbox will run 
+* Once you signed in, a Sandbox will run  ( or you may need to start the SandBox )
 
 * Select a Network  e.g: 4g-5g-macro-v2x 
 
