@@ -8,7 +8,7 @@ Access Kubernetes Steps.
 
 
 | Username | StuNo | Student Name             |
-|----------|--------------------------|
+|----------|--------------------------|-----|
 | stu1     | 01 |Chong Siew Kwee          |
 | stu2     | 02 |Koay Wei Kheng           |
 | stu3     | 03 |Larsen Bautista Barcelon |
