@@ -38,6 +38,8 @@ docker run hello-world
 docker ps  -a
 
 docker rm -f <CONTAINER ID of hello-world> 
+
+echo y | docker image prune -a
 ```
 
 # Step 
@@ -61,6 +63,11 @@ rm -rf cri-dockerd_0.3.14.3-0.ubuntu-jammy_amd64.deb
 * Install CNI for Kubernetes Support 
 
 ```sh
+
+cd $HOME
+
+git clone https://github.com/stv707/mec_labs.git
+
 cd mec_labs/lab1/
 
 . install-cni.sh
@@ -73,17 +80,36 @@ cd mec_labs/lab1/
 ```sh
 cd $HOME/mec_labs/lab1/docker-web/
 
+more app.js
+
+more Dockerfile
+
+docker images 
+( no return )
+
 docker build -t webserver1 .
 docker build -t webserver2 .
 docker build -t webserver3 .
 
 docker images 
 
+docker network ls 
+
 docker network create mynetwork
+
+docker network ls 
 
 docker run -d --name web1 --network mynetwork --hostname web1 webserver1
 docker run -d --name web2 --network mynetwork --hostname web2 webserver2
 docker run -d --name web3 --network mynetwork --hostname web3 webserver3
+
+docker ps 
+
+docker inspect web1 | grep NetworkSettings -A 100
+
+docker inspect web2 | grep NetworkSettings -A 100
+
+docker inspect web3 | grep NetworkSettings -A 100
 
 ```
 
@@ -104,6 +130,11 @@ docker ps
 docker logs my-haproxy
 
 curl localhost
+
+while true; do curl localhost; sleep 2; done
+
+( control + c once you done checking it )
+
 ```
 
 # Step
@@ -119,12 +150,16 @@ mkdir $HOME/vpn
 
 docker run -d --name=openvpn-as --cap-add=NET_ADMIN -p 943:943 -p 443:443 -p 1194:1194/udp -v $HOME/vpn/:/openvpn openvpn/openvpn-as
 
+( wait 73 seconds before next command )
+
+
 docker logs openvpn-as | grep 'Auto-generated pass'
 
 ```
->> Login to <DOCKER-HOST-IP:/>
->> using the generated password, you can login to the CNF OpenVpn 
->> username : openvpn 
+>> Login to  https://<DOCKERIP>:943/admin/
+
+>> using the generated password, you can login to the CNF OpenVpn
+>> username : openvpn
 
 
 # Step
@@ -132,10 +167,13 @@ docker logs openvpn-as | grep 'Auto-generated pass'
 
 ```sh
 docker ps -a 
-docker rm -f <Container ID> 
+
+for i in $(docker ps -a | awk '{print $1}' | tail +2); do docker rm -f $i ; done
+
+docker ps -a 
 
 docker network ls 
-docker network rm <UNWANTED_NETWORK>
+docker network rm mynetwork
 
 ```
 ## END of Lab1A
@@ -178,9 +216,8 @@ docker-compose version
 * Examine the docker-compose.yaml file and change any Password variables to your own password
 
 ```sh
-more docker-compose.yaml
+more docker-compose.yml
 
-vim docker-compose.yaml
 ```
 
 # Step
@@ -201,20 +238,21 @@ docker-compose up -d
 ```
 >> YOUR_LOCAL_IP is the ip address of the VM ethernet interface
 >> Download and Up will take 5 ~ 7 Minute
+>> While Downloading please visit https://openbaton-docs.readthedocs.io/en/latest/
 
 # Step
 * once images are downloaded and started run logs to verify everything is running
 ```sh
 docker-compose ps
 
-docker-compose logs -f 
+docker-compose logs 
 ```
 >> Control+C after reviewing the Logs, then rerun docker-compose ps
 
 # Step
 * After completing the installation, you should be able to reach the dashboard of the NFVO at the following url: http://your-ip-here:8080
 
-* When accessing the dashboard, you will be prompted for a username and password. The first access can only be done with the super user ("admin") created during the installation process (the default value is "openbaton")
+* When accessing the dashboard, you will be prompted for a username and password. The first access can only be done with the super user ("admin") created during the installation process (the default password value is "openbaton")
 
 * register a new pop of type docker
 
@@ -243,11 +281,11 @@ docker-compose logs -f
 
 
 ```sh
-cd $HOME/mec-labs/lab1/docker-iperfclient 
+cd $HOME/mec_labs/lab1/docker-iperfclient 
 
 docker build -t iperfclient .
 
-cd $HOME/mec-labs/lab1/docker-iperfserver
+cd $HOME/mec_labs/lab1/docker-iperfserver
 
 docker build -t iperfserver .
 ```
@@ -342,8 +380,18 @@ docker build -t iperfserver .
 ```
 # Step
 
-* Launch NSD 
+* Action > Launch > Launch
 
+# Step 
+
+```sh 
+
+docker ps 
+
+docker network ls 
+
+
+```
 >> Beyond this, help yourself to explore the VNFO 
 
 
@@ -355,11 +403,17 @@ docker build -t iperfserver .
 
 docker-compose ps
 
+cd $HOME/obaton 
+
 docker-compose down -v 
 
-docker ps 
+docker ps -a 
 
-docker rm -f <container_ID> 
+for i in $(docker ps -a | awk '{print $1}' | tail +2); do docker rm -f $i ; done
+
+
+docker ps -a
+
 
 ```
 
