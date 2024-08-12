@@ -109,7 +109,7 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 7. Try to explore all other API 
 
 >> ALL this API are MEC PLATFORM Spec by ETSI 
->> any MEC Vendor will have all this as per ETSI Spec
+>> any MEC Vendor will have all this as per ETSI Spec according to your application service or requirements 
 
 
 # Step
