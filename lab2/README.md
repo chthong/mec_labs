@@ -2,7 +2,7 @@
 
 ### Simulated MEC Platform 
 * This MEC Platform will run on single machine spec 
-* the VM used here is MEC-Platform Ubuntu Desktop Image
+* the VM used here is [ MEC-Platform Ubuntu ] Desktop Image
 * Please make sure you stop/shutdown any other Virtual Machines  ( you can keep it running, but it will slow down the machine )
 
 * username: droot 
@@ -45,7 +45,6 @@ cd $HOME/mec_labs/oai-mep/
 
 docker-compose -f ci-scripts/docker-compose.yaml up -d
 ```
->> the images already been downloaded.
 
 
 # Step 

@@ -12,8 +12,23 @@
 ### Lab4 - Kubernetes + Kubeedge [ Edge ]
 ### Lab5 - Simulated Delivery of Application [ Edge ]
 ### Lab6 - WiP 
-### Lab7 - WiP 
-### Lab8 - WiP 
+
+
+# Lab Access Setup
+
+| Username | StuNo | Student Name             |
+|----------|--------------------------|-----|
+| stu1     | 01 |Chong Siew Kwee          |
+| stu2     | 02 |Koay Wei Kheng           |
+| stu3     | 03 |Larsen Bautista Barcelon |
+| stu4     | 04 |Lee Hao Yi               |
+| stu5     | 05 | Liew Chee Seng          |
+| stu6     | 06 | Pang Chee Wai           |
+| stu7     | 07 | Shahrin Md Zin          |
+| stu8     | 08 | Sharen Bin Hassim       |
+| stu9     | 09  |Wong Choon Hon          |
+
+
 
 Thank You, Have Fun, Cheers<br>
 Steven<br>
