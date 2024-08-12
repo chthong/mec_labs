@@ -10,8 +10,8 @@
 ### Lab2 - API Management [ online ]
 ### Lab3 - Kubernetes [ Cloud Access ]
 ### Lab4 - Kubernetes + Kubeedge [ Edge ]
-### Lab5 - Simulated Delivery of Application [ Edge ]
-### Lab6 - WiP 
+### Lab5 - Delivery of Application [ Edge ]
+### Lab6 - Kubernetes MEC Deep Dive [ Edge ]
 
 
 # Lab Access Setup
