@@ -3,8 +3,8 @@
 # Step 
 
 * Prepare System for Docker
-* Login to local Ubuntu VM  ( Verify Connectivity and IP and Internet access )
-* Default username: steve 
+* Login to local Ubuntu VM [ Ubuntu2204 ]  ( Verify Connectivity and IP and Internet access )
+* Default username: droot 
 * Default password: -nil-
 
 ```sh 

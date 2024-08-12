@@ -7,17 +7,17 @@ Access Kubernetes Steps.
 1. Use the following info to get connected
 
 
-| Username | Student Name                |
+| Username | StuNo | Student Name             |
 |----------|--------------------------|
-| stu1     | Chong Siew Kwee          |
-| stu2     | Koay Wei Kheng           |
-| stu3     | Larsen Bautista Barcelon |
-| stu4     | Lee Hao Yi               |
-| stu5     | Liew Chee Seng           |
-| stu6     | Pang Chee Wai            |
-| stu7     | Shahrin Md Zin           |
-| stu8     | Sharen Bin Hassim        |
-| stu9     | Wong Choon Hon           |
+| stu1     | 01 |Chong Siew Kwee          |
+| stu2     | 02 |Koay Wei Kheng           |
+| stu3     | 03 |Larsen Bautista Barcelon |
+| stu4     | 04 |Lee Hao Yi               |
+| stu5     | 05 | Liew Chee Seng          |
+| stu6     | 06 | Pang Chee Wai           |
+| stu7     | 07 | Shahrin Md Zin          |
+| stu8     | 08 | Sharen Bin Hassim       |
+| stu9     | 09  |Wong Choon Hon          |
 
 
 >> Password will given during session
