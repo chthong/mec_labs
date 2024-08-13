@@ -156,7 +156,7 @@ docker run -d --name=openvpn-as --cap-add=NET_ADMIN -p 943:943 -p 443:443 -p 119
 docker logs openvpn-as | grep 'Auto-generated pass'
 
 ```
->> Login to  https://<DOCKERIP>:943/admin/
+>> Login to  https://HOSTIP:943/admin/
 
 >> using the generated password, you can login to the CNF OpenVpn
 >> username : openvpn
