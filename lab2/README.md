@@ -160,6 +160,30 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 * You can access https://mecwiki.etsi.org/index.php?title=MEC_Sandbox_Help#UE_Types to get more information on how to use/try this platform
 
+### Step : Navigate the try-mec with Swagger UI
+
+1. Setup the SandBox as per this settings: 
+
+![alt text](image-5.png)
+
+
+2. Find the ID of UE: 
+![alt text](image-6.png)  
+
+
+3. Use the swagger UI ( ETSI GS MEC 013 - Location API )
+
+![alt text](image-7.png)
+
+4. In the Swagger UI : Navigate to GET /queries/users and select Try it out and select add the UE ID 
+ 
+
+
+
+
+
+
+
 
 ### Step : Try access the APi from Application Point of View
 
