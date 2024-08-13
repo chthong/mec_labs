@@ -153,5 +153,8 @@ ssh stuX@ssh.cognitoz.my
 kubectl get ns 
 
 kubectl get pod -n  < UUID-MANO >
+
+kubectl get all -n  < UUID-MANO >
+
 ```
 END
