@@ -167,16 +167,22 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 ![alt text](image-5.png)
 
 
+
+
 2. Find the ID of UE: 
 ![alt text](image-6.png)  
+
+
 
 
 3. Use the swagger UI ( ETSI GS MEC 013 - Location API )
 
 ![alt text](image-7.png)
 
+
+
 4. In the Swagger UI : Navigate to GET /queries/users and select Try it out and select add the UE ID 
- 
+
 
 
 
