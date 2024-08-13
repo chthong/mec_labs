@@ -107,4 +107,51 @@ osm repo-list
 osm repo-show bitnami
 ```
 
+# Step
+* Once the cluster is attached to your OSM, you can work with KNF in the same way as you do with any VNF. For instance, you can onboard the example below of a KNF consisting of a single Kubernetes deployment unit based on OpenLDAP helm chart.
+
+```sh
+cd $HOME 
+
+git clone --recursive https://osm.etsi.org/gitlab/vnf-onboarding/osm-packages.git
+
+cd osm-packages
+
+osm nfpkg-create openldap_knf
+
+osm nspkg-create openldap_ns
+
+```
+
+# Step
+* You can instantiate two NS instances:
+
+```sh
+osm ns-create --ns_name ldap --nsd_name openldap_ns --vim_account demovim 
+```
+
+```sh 
+osm ns-create --ns_name ldap2 --nsd_name openldap_ns --vim_account demovim --config '{additionalParamsForVnf: [{"member-vnf-index": "openldap", additionalParamsForKdu: [{ kdu_name: "ldap", "additionalParams": {"replicaCount": "2"}}]}]}'
+```
+
+
+# Step
+* Check that both operations are marked as completed:
+
+```sh
+osm ns-op-list ldap
+osm ns-op-list ldap2
+```
+
+# Step
+* Head to Cloud Kubernetes and verify OSM/MANO have deployed 2 KNF to Kubernetes 
+
+```sh
+ssh stuX@ssh.cognitoz.my
+
+
+kubectl get ns 
+
+kubectl get pod -n  < UUID-MANO >
+```
 END
