@@ -163,7 +163,7 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 ### Step : Try access the APi from Application Point of View
 
-* 1. SSH to ssh.cognitoz.my with your username and password as per table below
+1. SSH to ssh.cognitoz.my with your username and password as per table below
 
 | Username | StuNo | Student Name             |
 |----------|--------------------------|-----|
