@@ -277,6 +277,9 @@ Verify that the namespace, pod, and service were created successfully:
   kubectl get all -n my-lab
   ```
 
+- **Access the application**:
+    * using the LoadBalancer IP address, access the web application 
+
 ### **6. Delete the Resources Using the API**
 Delete the pod, service, and namespace using the following `curl` commands:
 
