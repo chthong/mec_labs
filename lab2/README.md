@@ -161,6 +161,44 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 * You can access https://mecwiki.etsi.org/index.php?title=MEC_Sandbox_Help#UE_Types to get more information on how to use/try this platform
 
 
+### Step : Try access the APi from Application Point of View
+
+* 1. SSH to ssh.cognitoz.my with your username and password as per table below
+
+| Username | StuNo | Student Name             |
+|----------|--------------------------|-----|
+| stu1     | 01 |Chong Siew Kwee          |
+| stu2     | 02 |Koay Wei Kheng           |
+| stu3     | 03 |Larsen Bautista Barcelon |
+| stu4     | 04 |Lee Hao Yi               |
+| stu5     | 05 | Liew Chee Seng          |
+| stu6     | 06 | Pang Chee Wai           |
+| stu7     | 07 | Shahrin Md Zin          |
+| stu8     | 08 | Sharen Bin Hassim       |
+| stu9     | 09  |Wong Choon Hon          |
+
+2. Example: 
+```sh 
+
+ssh stuX@ssh.cognitoz.my 
+
+```
+
+3. While you are at https://try-mec.etsi.org/ , fetch the base API URL 
+
+![alt text](image-3.png)
+
+4. In your prompt , git clone this repo 
+```sh 
+cd $HOME 
+
+git clone https://github.com/stv707/mec_labs.git
+```
+
+5. Navigate to the lab2 subdirectory and run the shell script ( mecpapi1.sh ), and follow the prompt 
+```sh 
+sh mecapi1.sh 
+```
 
 
 END
