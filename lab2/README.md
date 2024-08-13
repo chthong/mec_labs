@@ -188,7 +188,7 @@ ssh stuX@ssh.cognitoz.my
 
 ![alt text](image-3.png)
 
-4. In your prompt , navidate to lab2 
+4. In your prompt , navigate to lab2 
 ```sh 
 cd $HOME 
 
