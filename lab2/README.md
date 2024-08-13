@@ -183,7 +183,7 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 
 4. In the Swagger UI : Navigate to GET /queries/users and select Try it out and select add the UE ID 
 
-
+![alt text](image-8.png)
 
 
 
