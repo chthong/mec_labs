@@ -47,10 +47,10 @@ kubectl -n osm get pods
 
 
 # Step
-* OSM client, a python-based CLI for OSM, will be available as well in the host machine. Via the OSM client, you can manage descriptors, NS and VIM complete lifecycle.
+* Install OSM client
 
 ```sh
-osm --help
+sudo snap install osmclient
 
 ```
 # Step
@@ -77,7 +77,6 @@ stuX@ssh.cognitoz.my's password: ( GIVEN IN CLASS )
 * Add K8s cluster to OSM MANO 
 
 ```sh
-sudo snap install osmclient
 
 osm k8scluster-list
 
@@ -94,11 +93,18 @@ osm k8scluster-show cluster
 ![alt text](image-5.png)
 
 # Step
-
-
+* You might need to add some repos from where to download helm charts required by the KNF
 
 ```sh
+osm repo-add --type helm-chart --description "Bitnami repo" bitnami https://charts.bitnami.com/bitnami
 
+osm repo-add --type helm-chart --description "Cetic repo" cetic https://cetic.github.io/helm-charts
+
+osm repo-add --type helm-chart --description "Elastic repo" elastic https://helm.elastic.co
+
+osm repo-list
+
+osm repo-show bitnami
 ```
 
 END
