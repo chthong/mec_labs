@@ -188,16 +188,21 @@ ssh stuX@ssh.cognitoz.my
 
 ![alt text](image-3.png)
 
-4. In your prompt , git clone this repo 
+4. In your prompt , navidate to lab2 
 ```sh 
 cd $HOME 
 
-git clone https://github.com/stv707/mec_labs.git
+cd $HOME/mec_labs/lab2/
 ```
 
-5. Navigate to the lab2 subdirectory and run the shell script ( mecpapi1.sh ), and follow the prompt 
+5. Run the shell script ( mecpapi1.sh ), and follow the prompt 
 ```sh 
-sh mecapi1.sh 
+. mecapi1.sh 
+```
+
+6. Run second shell script ( mecapi2.h ), and follow the prompt 
+```sh 
+. mecapi2.sh
 ```
 
 

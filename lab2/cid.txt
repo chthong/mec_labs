@@ -1,0 +1,5 @@
+Client ID: fIKmjSdACdXliZz6pNbrkqzHDbY0VoNC
+
+Client Sec: j5XmAOpGLNYIHZyG
+
+Auth Header: Basic ZklLbWpTZEFDZFhsaVp6NnBOYnJrcXpIRGJZMFZvTkM6ajVYbUFPcEdMTllJSFp5Rw==
