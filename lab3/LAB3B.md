@@ -23,14 +23,7 @@ chmod +x install_osm.sh
 ```
 >> If there is a prompt, read it and press Y to continue
 >> it will take 7 minute 42seconds to install ETSI MONA ( Standard installation )
-
-
-# Step 
-* You can access to the UI in the following URL (user:admin, password: admin): http://1.2.3.4, replacing 1.2.3.4 by the IP address of your VM.
-![alt text](image.png)
-
-![alt text](image-1.png)
-
+>> Even the installation is done, the POD ( containers are still starting )
 
 # Step 
 
@@ -41,6 +34,17 @@ kubectl get all -n osm
 
 kubectl -n osm get pods
 ```
+>> Make sure all Pods are Running ( will take some time )
+>> it will take 6 minute or less 
+
+# Step 
+* You can access to the UI in the following URL (user:admin, password: admin): http://1.2.3.4, replacing 1.2.3.4 by the IP address of your VM.
+![alt text](image.png)
+
+![alt text](image-1.png)
+
+
+
 
 # Step
 * OSM client, a python-based CLI for OSM, will be available as well in the host machine. Via the OSM client, you can manage descriptors, NS and VIM complete lifecycle.
@@ -49,35 +53,45 @@ kubectl -n osm get pods
 osm --help
 
 ```
+# Step
+* Create a Dummy VIM called demovim 
+* Name it demovim
+
+![alt text](image-2.png)
+
+![alt text](image-3.png)
+
+![alt text](image-4.png)
 
 # Step
-* 
-
-
-```sh
-
-```
-
-# Step
+* Now, you will download the kubeconfig from Cloud Kubernetes
 
 ```sh
-
+scp stuX@ssh.cognitoz.my:/home/stuX/.kube/config .
+stuX@ssh.cognitoz.my's password: ( GIVEN IN CLASS )
 ```
-
-# Step
-
-
-```sh
-
-```
-
+>> replace the stuX with your student number
 
 
 # Step
+* Add K8s cluster to OSM MANO 
 
 ```sh
+sudo snap install osmclient
+
+osm k8scluster-list
+
+osm k8scluster-add --creds config --version '1.30' --vim demovim --description "My K8s cluster" --k8s-nets '{"net1": "vim-net"}' cluster
+
+osm k8scluster-list
+
+osm k8scluster-show cluster
 
 ```
+# Step
+* Verify the k8s cluster been added to OSM MANO 
+
+![alt text](image-5.png)
 
 # Step
 
