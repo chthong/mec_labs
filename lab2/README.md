@@ -191,8 +191,6 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 ![alt text](image-9.png)
 
 
-
-
 ### Step : Try access the APi from Application Point of View
 
 1. SSH to ssh.cognitoz.my with your username and password as per table below
@@ -239,6 +237,15 @@ cd $HOME/mec_labs/lab2/
 ```sh 
 . mecapi2.sh
 ```
+
+
+## LAB2C - CAMARA API Example
+
+1. navigate to https://developer.orange.com/apis/camara-sandbox-device-location-retrieval-orange-lab/getting-started
+
+>> Orange S.A. is a French multinational telecommunications company. It has 266 million customers worldwide and employs about 89,000 people or more in France and 59,000 people worldwide. In 2023, the group had a revenue of approximately €43 billion. The company's head office is located in Issy-les-Moulineaux, in the southwestern suburban area of Paris City.
+
+2. In the Page, read thru and the Getting Started on the CAMARA API offering/
 
 
 END

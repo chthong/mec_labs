@@ -125,12 +125,6 @@ kubectl get service
 
 kubectl get all 
 
-cp voteapp.yaml voteapp_mod.yaml 
-
-vim voteapp_mod.yaml    ( REMOVE CPU Request / Limit Entry )
-
-kubectl apply -f voteapp_mod.yaml
-
 kubectl apply -f voteapp_mod.yaml
 
 kubectl get pod
