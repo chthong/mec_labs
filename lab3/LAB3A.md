@@ -1,4 +1,5 @@
 # LAB3A  Explore Kubernetes Cluster 
+* Cloud Kubernetes [ Hosted in CLOUD Layer ]
 
 
 Explore and Verify Kubernetes ( DO )
