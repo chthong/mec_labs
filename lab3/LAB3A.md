@@ -5,6 +5,9 @@ Explore and Verify Kubernetes ( DO )
 # Step 1 
 
 1. Access hosted Linux System with your assigned username 
+>> you can use powershell or terminal to access remote shell
+>> the machine you will connect is known as jumphost
+>> jumphost have accesss to kubernetes cluster for each student
 
 
 ```sh
@@ -179,6 +182,7 @@ kubectl config view
 ```
 
 # Kubernetes API based access [ Why Kubernetes is the perfect platform for MEC ]
+>> You do NOT need to copy line by line, instead use the copy icon on this GitHub Page and paste directly on remote shell. 
 
 
 ### **1. Start `kubectl proxy`**
@@ -205,7 +209,10 @@ curl -X POST -H "Content-Type: application/json" \
   "kind": "Pod",
   "metadata": {
     "name": "nginx-pod",
-    "namespace": "my-lab"
+    "namespace": "my-lab",
+    "labels": {
+      "app": "nginx"
+    }
   },
   "spec": {
     "containers": [
@@ -236,7 +243,7 @@ curl -X POST -H "Content-Type: application/json" \
   },
   "spec": {
     "selector": {
-      "name": "nginx-pod"
+      "app": "nginx"
     },
     "ports": [
       {
@@ -263,6 +270,11 @@ Verify that the namespace, pod, and service were created successfully:
 - **Service**:
   ```bash
   curl http://localhost:8001/api/v1/namespaces/my-lab/services/nginx-service
+  ```
+
+- **Using Kubectl**:
+  ```bash
+  kubectl get all -n my-lab
   ```
 
 ### **6. Delete the Resources Using the API**
@@ -336,8 +348,5 @@ Verify that the deployment now has 8 replicas:
 ```bash
 curl http://localhost:8001/apis/apps/v1/namespaces/my-lab/deployments/kubia-deployment
 ```
-
-### **Conclusion**
-This step-by-step guide demonstrates how to interact with Kubernetes via the API using `kubectl proxy` and `curl`. You’ve created a namespace, pod, service, deployment, scaled the deployment, and cleaned up the resources, all using API calls. This setup can be very useful for learning and automation purposes.
 
 #### END
