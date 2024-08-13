@@ -200,7 +200,10 @@ cd $HOME/mec_labs/lab2/
 . mecapi1.sh 
 ```
 
-6. Run second shell script ( mecapi2.h ), and follow the prompt 
+6. Adjust the UE Settings as per below
+![alt text](image-4.png)
+
+7. Run second shell script ( mecapi2.h ), and follow the prompt 
 ```sh 
 . mecapi2.sh
 ```
