@@ -186,7 +186,9 @@ docker-compose -f ci-scripts/docker-compose.yaml ps
 ![alt text](image-8.png)
 
 
+5. Examine the Response Body
 
+![alt text](image-9.png)
 
 
 
