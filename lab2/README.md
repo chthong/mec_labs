@@ -220,7 +220,12 @@ ssh stuX@ssh.cognitoz.my
 
 4. In your prompt , navigate to lab2 
 ```sh 
+
+
+
 cd $HOME 
+
+git clone https://github.com/stv707/mec_labs.git 
 
 cd $HOME/mec_labs/lab2/
 ```
