@@ -155,20 +155,23 @@ Remove previously deployed App and verify there is no Service, Pod and Deploymen
 ```
 
 # Step 6 
+
+>> Replace the X with your student number
+
 ```sh
 kubectl cluster-info
 curl https://xxxxx-aks-dns-xxxxxxx.hcp.southeastasia.azmk8s.io:443 -k
 
-kubectl proxy & 
+kubectl proxy --port 909X & 
 
-curl localhost:8001
+curl localhost:909X
 
-curl http://localhost:8001/apis/batch
+curl http://localhost:909X/apis/batch
 
 kubectl get nodes 
 ** REPLACE THE NODENAME from THE OUTPUT 
 
-curl http://localhost:8001/api/v1/nodes/NODENAME 
+curl http://localhost:909X/api/v1/nodes/NODENAME 
 
 ```
 # Step 7 
@@ -186,19 +189,20 @@ kubectl config view
 >> You do NOT need to copy line by line, instead use the copy icon on this GitHub Page and paste directly on remote shell. 
 
 
-### **1. Start `kubectl proxy`**
-First, start the `kubectl proxy` to enable API access via `localhost:8001`:
+### **1. Start `kubectl proxy` if not started!!!**
+First, start the `kubectl proxy` to enable API access via `localhost:909X`:
 ```bash
 kubectl proxy &
 ```
-This will start the proxy in the background and open port `8001` for API access.
+>> Only run this command if in previous steps elsewhere in guide you never started a proxy
+
 
 ### **2. Create a Namespace**
 Let's create a namespace called `my-lab`:
 ```bash
 curl -X POST -H "Content-Type: application/json" \
 -d '{"apiVersion": "v1", "kind": "Namespace", "metadata": {"name": "my-lab"}}' \
-http://localhost:8001/api/v1/namespaces
+http://localhost:909X/api/v1/namespaces
 ```
 
 ### **3. Create a Pod (nginx)**
@@ -228,7 +232,7 @@ curl -X POST -H "Content-Type: application/json" \
       }
     ]
   }
-}' http://localhost:8001/api/v1/namespaces/my-lab/pods
+}' http://localhost:909X/api/v1/namespaces/my-lab/pods
 ```
 
 ### **4. Create a LoadBalancer Service for the Pod**
@@ -255,22 +259,22 @@ curl -X POST -H "Content-Type: application/json" \
     ],
     "type": "LoadBalancer"
   }
-}' http://localhost:8001/api/v1/namespaces/my-lab/services
+}' http://localhost:909X/api/v1/namespaces/my-lab/services
 ```
 
 ### **5. Verify the API Calls**
 Verify that the namespace, pod, and service were created successfully:
 - **Namespace**:
   ```bash
-  curl http://localhost:8001/api/v1/namespaces/my-lab
+  curl http://localhost:909X/api/v1/namespaces/my-lab
   ```
 - **Pod**:
   ```bash
-  curl http://localhost:8001/api/v1/namespaces/my-lab/pods/nginx-pod
+  curl http://localhost:909X/api/v1/namespaces/my-lab/pods/nginx-pod
   ```
 - **Service**:
   ```bash
-  curl http://localhost:8001/api/v1/namespaces/my-lab/services/nginx-service
+  curl http://localhost:909X/api/v1/namespaces/my-lab/services/nginx-service
   ```
 
 - **Using Kubectl**:
@@ -286,15 +290,15 @@ Delete the pod, service, and namespace using the following `curl` commands:
 
 - **Delete the Pod**:
   ```bash
-  curl -X DELETE http://localhost:8001/api/v1/namespaces/my-lab/pods/nginx-pod
+  curl -X DELETE http://localhost:909X/api/v1/namespaces/my-lab/pods/nginx-pod
   ```
 - **Delete the Service**:
   ```bash
-  curl -X DELETE http://localhost:8001/api/v1/namespaces/my-lab/services/nginx-service
+  curl -X DELETE http://localhost:909X/api/v1/namespaces/my-lab/services/nginx-service
   ```
 - **Delete the Namespace**:
   ```bash
-  curl -X DELETE http://localhost:8001/api/v1/namespaces/my-lab
+  curl -X DELETE http://localhost:909X/api/v1/namespaces/my-lab
   ```
 
 ### **7. Create a Deployment Using `stv707/kubia:v14` with 4 Replicas**
@@ -336,7 +340,7 @@ curl -X POST -H "Content-Type: application/json" \
       }
     }
   }
-}' http://localhost:8001/apis/apps/v1/namespaces/my-lab/deployments
+}' http://localhost:909X/apis/apps/v1/namespaces/my-lab/deployments
 ```
 
 ### **8. Scale the Deployment to 8 Replicas**
@@ -344,13 +348,13 @@ Scale the `kubia-deployment` to 8 replicas:
 ```bash
 curl -X PATCH -H "Content-Type: application/merge-patch+json" \
 -d '{"spec": {"replicas": 8}}' \
-http://localhost:8001/apis/apps/v1/namespaces/my-lab/deployments/kubia-deployment
+http://localhost:909X/apis/apps/v1/namespaces/my-lab/deployments/kubia-deployment
 ```
 
 ### **9. Verify the Scaling**
 Verify that the deployment now has 8 replicas:
 ```bash
-curl http://localhost:8001/apis/apps/v1/namespaces/my-lab/deployments/kubia-deployment
+curl http://localhost:909X/apis/apps/v1/namespaces/my-lab/deployments/kubia-deployment
 ```
 
 #### END
