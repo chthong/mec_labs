@@ -16,7 +16,9 @@ ssh stuX@cognitoz.my
 
 ### Step 1: Set Up a Kubernetes Cluster
 
-Ensure you have a Kubernetes cluster running.
+```bash 
+kubectl create namespace labns
+```
 
 ### Step 2: Install Multus CNI
 
@@ -27,67 +29,9 @@ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-c
 ```
 
 
-### Step 3: Create VLAN-based Network Attachments (if not using SR-IOV)
+### Step 3: Create VLAN-based Network Attachments
 
-For those without SR-IOV hardware, VLANs can be used to create isolated network slices.
-
-#### a. Create NetworkAttachmentDefinitions
-
-**Create a VLAN-based network slice** using the `NetworkAttachmentDefinition` resource in Kubernetes.
-
-1. **VLAN 10** (e.g., slice1):
-   Create a file named `slice1-vlan.yaml`:
-   ```yaml
-   apiVersion: "k8s.cni.cncf.io/v1"
-   kind: NetworkAttachmentDefinition
-   metadata:
-     name: slice1-vlan
-     namespace: labns
-   spec:
-     config: '{
-       "cniVersion": "0.3.1",
-       "type": "macvlan",
-       "mode": "bridge",
-       "master": "eth0",
-       "ipam": {
-         "type": "static",
-         "addresses": [
-           {
-             "address": "192.168.10.100/24",
-             "gateway": "192.168.10.1"
-           }
-         ]
-       }
-     }'
-   ```
-
-2. **VLAN 20** (e.g., slice2):
-   Create a file named `slice2-vlan.yaml`:
-   ```yaml
-   apiVersion: "k8s.cni.cncf.io/v1"
-   kind: NetworkAttachmentDefinition
-   metadata:
-     name: slice2-vlan
-     namespace: labns
-   spec:
-     config: '{
-       "cniVersion": "0.3.1",
-       "type": "macvlan",
-       "mode": "bridge",
-       "master": "eth0",
-       "ipam": {
-         "type": "static",
-         "addresses": [
-           {
-             "address": "192.168.20.100/24",
-             "gateway": "192.168.20.1"
-           }
-         ]
-       }
-     }'
-   ```
-
-3. **Apply the configurations**:
+1. **Apply the configurations**:
    ```bash
    kubectl apply -f slice1-vlan.yaml
    kubectl apply -f slice2-vlan.yaml
@@ -97,49 +41,13 @@ For those without SR-IOV hardware, VLANs can be used to create isolated network 
 
 We will now create pods with multiple network interfaces corresponding to the different network slices.
 
-1. **Create a YAML file for `pod-a`** with connections to both network slices:
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: pod-a
-     namespace: labns
-     annotations:
-       k8s.v1.cni.cncf.io/networks: '[{ "name": "slice1-vlan" }, { "name": "slice2-vlan" }]'
-   spec:
-     containers:
-     - name: busybox
-       image: radial/busyboxplus:curl
-       command: ['sh', '-c', 'sleep 3600']
-       stdin: true
-       tty: true
-   ```
-
-2. **Create a YAML file for `pod-b`** with connections to both network slices:
-   ```yaml
-   apiVersion: v1
-   kind: Pod
-   metadata:
-     name: pod-b
-     namespace: labns
-     annotations:
-       k8s.v1.cni.cncf.io/networks: '[{ "name": "slice1-vlan" }, { "name": "slice2-vlan" }]'
-   spec:
-     containers:
-     - name: busybox
-       image: radial/busyboxplus:curl
-       command: ['sh', '-c', 'sleep 3600']
-       stdin: true
-       tty: true
-   ```
-
-3. **Apply the configurations**:
+1. **Apply the configurations**:
    ```bash
    kubectl apply -f pod-a.yaml
    kubectl apply -f pod-b.yaml
    ```
 
-### Step 6: Verify and Test the Network Slices
+### Step 5: Verify and Test the Network Slices
 
 1. **Check the Network Interfaces** in the pods to ensure they are attached to both slices:
    ```bash
@@ -161,7 +69,7 @@ We will now create pods with multiple network interfaces corresponding to the di
 
    This will verify the connectivity across different network slices.
 
-### Step 7: Cleanup
+### Step 8: Cleanup
 
 After completing your lab, you can clean up the resources:
 
