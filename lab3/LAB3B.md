@@ -1,15 +1,21 @@
 # Lab 3B : MANO with Kubernetes
 
 * VM Machine: MANOv15-base
+
+* Before powering on, change the network to NAT ( change from Bridge to NAT )
 * power on this machine ( make sure you turn off other machines )
 
 # Step 
 * rename the machine 
 ```sh 
 sudo hostnamectl hostname osmXX 
+
+ip a 
 ```
+
 >> XX is your student no. 
 >> Logout and Login to verify name change
+>> Capture the IP address inside the machine and keep note of it, later you need this
 
 # Step 
 * Install OSM (standard installation)
@@ -23,7 +29,7 @@ chmod +x install_osm.sh
 ```
 >> If there is a prompt, read it and press Y to continue
 >> it will take 7 minute 42seconds to install ETSI MONA ( Standard installation )
->> Even the installation is done, the POD ( containers are still starting )
+>> After the installation is done, the POD ( containers are still might be in starting mode )
 
 # Step 
 
@@ -35,7 +41,7 @@ kubectl get all -n osm
 kubectl -n osm get pods
 ```
 >> Make sure all Pods are Running ( will take some time )
->> it will take 6 minute or less 
+>> it will take less then 6 min
 
 # Step 
 * You can access to the UI in the following URL (user:admin, password: admin): http://1.2.3.4, replacing 1.2.3.4 by the IP address of your VM.
@@ -69,9 +75,12 @@ sudo snap install osmclient
 ```sh
 scp stuX@ssh.cognitoz.my:/home/stuX/.kube/config .
 stuX@ssh.cognitoz.my's password: ( GIVEN IN CLASS )
+
+ls -l config 
+
 ```
 >> replace the stuX with your student number
-
+>> verify you have the config file 
 
 # Step
 * Add K8s cluster to OSM MANO 
