@@ -5,9 +5,13 @@
 ```sh 
 ssh stuX@cognitoz.my
 
+cd $HOME/mec_labs 
+
+git pull 
+
 ```
 >> X is your student number
-
+>> git pull to sync any new changes from git server
 
 ### Overview
 1. **Multus CNI** will enable pods to have multiple network interfaces.
@@ -75,8 +79,14 @@ After completing your lab, you can clean up the resources:
 
 ```bash
 kubectl delete -f pod-a.yaml
+
 kubectl delete -f pod-b.yaml
+
 kubectl delete -f slice1-vlan.yaml
+
 kubectl delete -f slice2-vlan.yaml
+
 kubectl delete namespace labns
+
+kubectl delete -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-cni/master/deployments/multus-daemonset-thick.yml
 ```
