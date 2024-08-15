@@ -192,7 +192,7 @@ kubectl config view
 ### **1. Start `kubectl proxy` if not started!!!**
 First, start the `kubectl proxy` to enable API access via `localhost:909X`:
 ```bash
-kubectl proxy &
+kubectl proxy --port 909X & 
 ```
 >> Only run this command if in previous steps elsewhere in guide you never started a proxy
 
