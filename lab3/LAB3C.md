@@ -3,7 +3,7 @@
 
 * Login to ssh.cognitoz.my 
 ```sh 
-ssh stuX@cognitoz.my
+ssh stuX@ssh.cognitoz.my
 
 cd $HOME/mec_labs 
 
@@ -36,6 +36,13 @@ kubectl apply -f https://raw.githubusercontent.com/k8snetworkplumbingwg/multus-c
 ### Step 3: Create VLAN-based Network Attachments
 
 1. **Apply the configurations**:
+>> UPDATE: navigate to lab3 sub-dir 
+```sh 
+cd $HOME/mec_labs/lab3/
+```
+
+
+
    ```bash
    kubectl apply -f slice1-vlan.yaml
    kubectl apply -f slice2-vlan.yaml
